@@ -3,12 +3,16 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"strings"
 )
 
 func startRepl() {
 	reader := bufio.NewScanner(os.Stdin)
+	if err := reader.Err(); err != nil {
+		log.Fatalf("Reading error: %v", err)
+	}
 	for {
 		fmt.Print("Pokedex > ")
 		reader.Scan()
